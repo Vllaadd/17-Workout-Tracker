@@ -1,6 +1,5 @@
 const { Schema } = require("mongoose")
 
-const = require('mongoose')
 
 module.exports = model('workout', new Schema({
     day: {
