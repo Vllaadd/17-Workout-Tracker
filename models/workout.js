@@ -7,12 +7,12 @@ module.exports = model('workout', new Schema({
         required: true
     },
     exercises: [{
-        type:{type: String},
         name:{type: String},
-        duration: {type: Number},
+        type:{type: String},
         weight: {type: Number},
-        reps: {type: Number},
         sets: {type: Number},
+        reps: {type: Number},
+        duration: {type: Number},
         distance: {type: Number}
     }]
 }))
