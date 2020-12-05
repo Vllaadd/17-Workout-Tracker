@@ -1,11 +1,11 @@
 //===IMPORT NPM PACKAGES====================================
 const express = require('express')
-const = require('path')
+const path = require('path')
 const app = express()
 const mongoose = require('mongoose')
 
-//===SERVING STATIC FILES===================================
-app.use(express.static(join(__dirname, 'public')))
+//===STATIC DIRECTORY===================================
+app.use(express.static('public'));
 
 //===DATA PARSING===========================================
 app.use(express.urlencoded({extended: true}))
@@ -18,7 +18,8 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb: //localhost/workout', {
 })
 
 //===IMPORTING ROUTES======================================
-app.use(require('./routes'))
+app.use(require('./routes/htmlRoutes'))
+app.use(require('./routes/workoutRoutes'))
   
   require('./config')
     .then(() => app.listen(process.env.PORT || 3000))
