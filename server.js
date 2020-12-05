@@ -17,8 +17,6 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb: //localhost/workout', {
   useUnifiedTopology: true
 })
 
-mongodb+srv://Vlad:columbia20mongo@cluster0.xm9q3.mongodb.net/testing?retryWrites=true&w=majorityz
-
 //===IMPORTING ROUTES======================================
 app.use(require('./routes'))
   
