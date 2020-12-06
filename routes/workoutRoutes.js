@@ -1,7 +1,6 @@
 const router = require('express').Router()
 const workout = require('../models/workout')
 
-
 //===showing previously logged workouts=======================
 router.get('/workouts', (req, res) => {
     workout.find()
@@ -24,4 +23,4 @@ router.put('/workouts/:id', (req, res) => {   //each workout previously created 
       .catch(e => console.error(e))
   })
 
-  
+module.exports = router;

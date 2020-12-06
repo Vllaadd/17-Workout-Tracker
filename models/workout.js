@@ -1,7 +1,6 @@
-const { Schema } = require("mongoose")
+const mongoose = require("mongoose")
 
-
-module.exports = model('workout', new Schema({
+var workoutSchema = new mongoose.Schema({
     day: {
         type: Date,
         required: true
@@ -15,4 +14,8 @@ module.exports = model('workout', new Schema({
         duration: {type: Number},
         distance: {type: Number}
     }]
-}))
+})
+
+var Workout = mongoose.model('workout', workoutSchema)
+
+module.exports = Workout;
