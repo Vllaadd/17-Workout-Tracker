@@ -15,18 +15,22 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
 //===DEPLOYING ON HEROKU====================================
-mongoose.connect(process.env.MONGODB_URL || 'mongodb: //localhost/workout', {
+mongoose.connect('mongodb+srv://Vlad:columbia20mongo@cluster0.xm9q3.mongodb.net/workout?retryWrites=true&w=majority', 
+{
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
     useFindAndModify: false
+},
+(req, res) => {
+  console.log('Connected to database!');
 })
 
 //===IMPORTING ROUTES======================================
 app.use(require('./routes/htmlRoutes'))
 app.use(require('./routes/workoutRoutes'))
   
-
+//===STARTING OUR EXPRESS APP===============================
 app.listen(PORT, () =>{
   console.log(`App listening on http://localhost:${PORT}`)
 })
