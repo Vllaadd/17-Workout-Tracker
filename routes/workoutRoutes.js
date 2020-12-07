@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const Workout = require('../models')
+const { Workout } = require('../models')
 
 //===showing previously logged workouts=======================
 router.get('/workouts', (req, res) => {
