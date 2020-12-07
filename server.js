@@ -26,9 +26,20 @@ mongoose.connect('mongodb+srv://Vlad:columbia20mongo@cluster0.xm9q3.mongodb.net/
   console.log('Connected to database!');
 })
 
-//===IMPORTING ROUTES======================================
-app.use(require('./routes/htmlRoutes'))
-app.use(require('./routes/workoutRoutes'))
+//===requiring api routes and setting html routes======================================
+app.use(require('./routes'))
+
+app.get('/', (req, res) => {
+  res.sendFile(join(__dirname, './public/index.html'))
+})
+
+app.get('/exercise', (req, res) => {
+  res.sendFile(join(__dirname, './public/exercise.html'))
+})
+
+app.get('/stats', (req, res) => {
+  res.sendFile(join(__dirname, './public/stats.html'))
+})
   
 //===STARTING OUR EXPRESS APP===============================
 app.listen(PORT, () =>{
