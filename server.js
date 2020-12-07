@@ -1,8 +1,13 @@
 //===IMPORT NPM PACKAGES====================================
-const express = require('express')
-const path = require('path')
-const app = express()
-const mongoose = require('mongoose')
+const express = require("express");
+const mongoose = require("mongoose");
+const logger = require("morgan");
+const path = require("path");
+const db = require("./models");
+
+
+
+const app = express();
 
 //===SETTING UP THE PORT=================================
 const PORT = process.env.PORT || 3000;
@@ -27,7 +32,7 @@ mongoose.connect('mongodb+srv://Vlad:columbia20mongo@cluster0.xm9q3.mongodb.net/
 })
 
 //===requiring api routes and html routes======================================
-app.use(require('./routes'))
+// app.use(require('./routes'))
 
 app.get('/', (req, res) => {
   res.send(path.join(__dirname, './public/index.html'))
