@@ -17,20 +17,70 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 
-//===requiring api routes and html routes======================================
-app.use(require('./routes'))
+//===HTML ROUTES======================================
 
 app.get('/', (req, res) => {
-  res.send(path.join(__dirname, './public/index.html'))
+  res.sendFile(path.join(__dirname + '/public/index.html'))
 })
 
 app.get('/exercise', (req, res) => {
-  res.send(path.join(__dirname, './public/exercise.html'))
+  res.sendFile(path.join(__dirname + '/public/exercise.html'))
 })
 
 app.get('/stats', (req, res) => {
-  res.send(path.join(__dirname, './public/stats.html'))
+  res.sendFile(path.join(__dirname + '/public/stats.html'))
 })
+
+app.post("/api/workouts", (req, res) => {
+  db.Workout.create(req.body)
+    .then(dbWorkouts => {
+      res.json(dbWorkouts);
+    })
+    .catch(err => {
+      res.status(400).json(err);
+    })
+})
+
+//===API ROUTES=================================================
+
+app.put("/api/workouts/:id", ({ body, params }, res) => {
+  console.log(body);
+  console.log(params.id);
+  db.Workout.findByIdAndUpdate(params.id, {$push: {exercises: body}})
+  .then(dbWorkouts => {
+    res.json(dbWorkouts);
+  })
+  .catch(err => {
+    res.status(400).json(err);
+  })
+});
+
+app.get("/api/workouts", (req, res) => {
+  db.Workout.find({})
+  .then(dbWorkouts => {
+    res.json(dbWorkouts);
+  })
+  .catch(err => {
+    res.status(400).json(err);
+  })
+});
+
+app.get("/api/workouts/range", (req, res) => {
+  db.Workout.find({})
+  .then(dbWorkouts => {
+    res.json(dbWorkouts);
+  })
+  .catch(err => {
+    res.status(400).json(err);
+  })
+});
+
+app.delete("/api/workouts", ({ body }, res) => {
+
+})
+
+
+
 
 //===CONNECTING TO MONGODB======================================
 mongoose.connect('mongodb://localhost/workout', 
