@@ -18,7 +18,6 @@ app.use(express.json())
 
 
 //===HTML ROUTES======================================
-
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/public/index.html'))
 })
@@ -42,7 +41,6 @@ app.post("/api/workouts", (req, res) => {
 })
 
 //===API ROUTES=================================================
-
 app.put("/api/workouts/:id", ({ body, params }, res) => {
   console.log(body);
   console.log(params.id);
