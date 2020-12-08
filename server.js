@@ -32,7 +32,7 @@ mongoose.connect('mongodb+srv://Vlad:columbia20mongo@cluster0.xm9q3.mongodb.net/
 })
 
 //===requiring api routes and html routes======================================
-// app.use(require('./routes'))
+app.use(require('./routes'))
 
 app.get('/', (req, res) => {
   res.send(path.join(__dirname, './public/index.html'))
