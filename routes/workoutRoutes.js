@@ -1,9 +1,6 @@
-const mongoose = require("mongoose");
-const logger = require("morgan");
-const path = require("path");
-const db = require("./models");
+const router = require("express").Router()
+const { Workout } = require("../models");
 
-const app = express();
 
 //===showing previously logged workouts=======================
 router.get('/workouts', (req, res) => {

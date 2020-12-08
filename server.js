@@ -1,35 +1,21 @@
 //===IMPORT NPM PACKAGES====================================
-const express = require("express");
-const mongoose = require("mongoose");
-const logger = require("morgan");
-const path = require("path");
-const db = require("./models");
-
-
-
+const express = require('express');
+const path = require('path');
+const mongoose = require('mongoose');
+const db = require('./models');
+const { on } = require('process');
 const app = express();
 
 //===SETTING UP THE PORT=================================
 const PORT = process.env.PORT || 3000;
 
 //===STATIC DIRECTORY===================================
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')))
 
 //===DATA PARSING===========================================
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-//===DEPLOYING ON HEROKU====================================
-mongoose.connect('mongodb+srv://Vlad:columbia20mongo@cluster0.xm9q3.mongodb.net/workout?retryWrites=true&w=majority', 
-{
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false
-},
-(req, res) => {
-  console.log('Connected to database!');
-})
 
 //===requiring api routes and html routes======================================
 app.use(require('./routes'))
@@ -45,6 +31,21 @@ app.get('/exercise', (req, res) => {
 app.get('/stats', (req, res) => {
   res.send(path.join(__dirname, './public/stats.html'))
 })
+
+//===CONNECTING TO MONGODB======================================
+mongoose.connect('mongodb://localhost/workout', 
+{
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+})
+mongoose.connection.once('open', function(){
+  console.log('Connected to the database!');
+}).on('error', function(error){
+  console.log('Connection error:', error)
+})
+ 
   
 //===STARTING OUR EXPRESS APP===============================
 app.listen(PORT, () =>{
