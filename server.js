@@ -81,7 +81,7 @@ app.delete("/api/workouts", ({ body }, res) => {
 
 
 //===CONNECTING TO MONGODB======================================
-mongoose.connect('mongodb://localhost/workout', 
+mongoose.connect('mongodb+srv://Vlad:columbia20mongo@cluster0.xm9q3.mongodb.net/workout?retryWrites=true&w=majority', 
 {
     useNewUrlParser: true,
     useUnifiedTopology: true,

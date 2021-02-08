@@ -1,7 +1,7 @@
 {
   "name": "workout-tracker",
   "version": "1.0.0",
-  "description": "",
+  "description": "# Overview  The purpose of this application is to help people reach their fitness goals quickly, since the productivity in general increases when we track the achievments.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,9 +12,19 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3",
-    "mongoose": "^5.11.2",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.15",
     "morgan": "^1.9.1",
     "path": "^0.12.7"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vllaadd/17-Workout-Tracker.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Vllaadd/17-Workout-Tracker/issues"
+  },
+  "homepage": "https://github.com/Vllaadd/17-Workout-Tracker#readme"
 }
